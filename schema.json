@@ -1,0 +1,42 @@
+{
+  "customer.customers": {
+    "transaction": true,
+    "partition-key": [
+      "customer_id"
+    ],
+    "columns": {
+      "customer_id": "INT",
+      "name": "TEXT"
+    }
+  },
+  "seat.seats": {
+    "transaction": true,
+    "partition-key": [
+      "seat_id"
+    ],
+    "columns": {
+      "seat_id": "INT",
+      "name": "TEXT",
+      "reserved_by": "INT"
+    }
+  },
+  "history.histories": {
+    "transaction": true,
+    "partition-key": [
+      "customer_id"
+    ],
+    "clustering-key": [
+      "timestamp"
+    ],
+    "secondary-index": [
+      "history_id"
+    ],
+    "columns": {
+      "history_id": "TEXT",
+      "operation": "TEXT",
+      "customer_id": "INT",
+      "seat_id": "INT",
+      "timestamp": "BIGINT"
+    }
+  }
+}

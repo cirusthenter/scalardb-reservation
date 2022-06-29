@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'org.reservation'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.scalar-labs:scalardb:3.5.2'
+    implementation 'info.picocli:picocli:4.1.4'
+}
+
+application {
+    mainClassName = 'reservation.command.ReservationCommand'
+}
+
+archivesBaseName = "reservation"
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8

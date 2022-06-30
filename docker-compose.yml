@@ -4,21 +4,21 @@ services:
     image: mysql:8.0.26
     environment:
       MYSQL_ROOT_PASSWORD: mysql
-    container_name: "mysql-1"
+    container_name: "mysql-reservation"
     ports:
       - "3306:3306"
     networks:
       - reservation-network
   cassandra:
     image: cassandra:3.11
-    container_name: "cassandra-1"
+    container_name: "cassandra-reservation"
     ports:
       - "9042:9042"
     networks:
       - reservation-network
   schema-loader:
     image: ghcr.io/scalar-labs/scalardb-schema-loader:3.5.2
-    container_name: "schema-loader-1"
+    container_name: "schema-loader-reservation"
     depends_on:
       - cassandra
       - mysql

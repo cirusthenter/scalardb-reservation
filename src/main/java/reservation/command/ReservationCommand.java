@@ -9,12 +9,12 @@ import picocli.CommandLine.Option;
     description = "Reservation application for Microservice Transaction",
     subcommands = {
       LoadInitialDataCommand.class,
-      PlaceOrderCommand.class,
-      GetOrderCommand.class,
-      GetOrdersCommand.class,
+      ReserveCommand.class,
+      CancelCommand.class,
+      GetHistoriesCommand.class,
       GetCustomerInfoCommand.class,
-      RepaymentCommand.class
     })
+
 public class ReservationCommand implements Runnable {
 
   @Option(

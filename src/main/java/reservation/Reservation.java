@@ -35,6 +35,7 @@ public class Reservation implements AutoCloseable {
       loadCustomerIfNotExists(transaction, 1, "Yamada Taro");
       loadCustomerIfNotExists(transaction, 2, "Yamada Hanako");
       loadCustomerIfNotExists(transaction, 3, "Suzuki Ichiro");
+      loadSeatIfNotExists(transaction, 1, );
       transaction.commit();
     } catch (TransactionException e) {
       if (transaction != null) {
@@ -64,19 +65,23 @@ public class Reservation implements AutoCloseable {
     }
   }
 
-  private void loadItemIfNotExists(
-      DistributedTransaction transaction, int itemId, String name, int price)
+  private void loadSeatIfNotExists(
+      DistributedTransaction transaction,
+      int seatId,
+      String name, 
+        int reservedBy
+      )asdfasfs
       throws TransactionException {
-    Optional<Result> item =
+    Optional<Result> seat =
         transaction.get(
-            new Get(new Key("item_id", itemId)).forNamespace("order").forTable("items"));
-    if (!item.isPresent()) {
+            new Get(new Key("seat_id", seatId)).forNamespace("seat").forTable("seats"));
+    if (!seat.isPresent()) {
       transaction.put(
-          new Put(new Key("item_id", itemId))
+          new Put(new Key("seat_id", seatId))
               .withValue("name", name)
-              .withValue("price", price)
-              .forNamespace("order")
-              .forTable("items"));
+              .withValue("reserved_by", reservedBy)
+              .forNamespace("seat")
+              .forTable("seats"));
     }
   }
 
@@ -154,7 +159,7 @@ public class Reservation implements AutoCloseable {
             transaction.get(
                 new Get(new Key("item_id", itemId)).forNamespace("order").forTable("items"));
         if (!item.isPresent()) {
-          throw new RuntimeException("Item not found");
+          throw new RuntimeException("Seat not found");
         }
 
         // Calculate the total amount
@@ -232,7 +237,7 @@ public class Reservation implements AutoCloseable {
           transaction.get(
               new Get(new Key("item_id", itemId)).forNamespace("order").forTable("items"));
       if (!item.isPresent()) {
-        throw new RuntimeException("Item not found");
+        throw new RuntimeException("Seat not found");
       }
 
       int price = item.get().getValue("price").get().getAsInt();

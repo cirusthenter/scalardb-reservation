@@ -92,7 +92,7 @@ ERROR: Encountered errors while bringing up the project.
 
 #### history.histories teble
 
-|history_id|operation|customer_id|seat_id|timestamp|
+|history_id|customer_id|operation|seat_id|timestamp|
 |:--:|:--:|:--:|:--:|:--:|
 
 ## Reserve
@@ -124,7 +124,7 @@ ERROR: Encountered errors while bringing up the project.
 
 #### Cassandra history.histories
 
-|history_id|operation|customer_id|seat_id|timestamp|
+|history_id|customer_id|operation|seat_id|timestamp|
 |:--:|:--:|:--:|:--:|:--:|
 |e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|2|3|1656652667347|
 |10ea7ad3-4be1-4271-9914-098635109edc|reserve|2|4|1656652667352|
@@ -160,7 +160,7 @@ ERROR: Encountered errors while bringing up the project.
 
 #### Cassandra history.histories
 
-|history_id|operation|customer_id|seat_id|timestamp|
+|history_id|customer_id|operation|seat_id|timestamp|
 |:--:|:--:|:--:|:--:|:--:|
 |e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|2|reserve|3|1656652667347|
 |10ea7ad3-4be1-4271-9914-098635109edc|2|reserve|4|1656652667352|

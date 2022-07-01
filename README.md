@@ -126,9 +126,9 @@ ERROR: Encountered errors while bringing up the project.
 
 |history_id|operation|customer_id|seat_id|timestamp|
 |:--:|:--:|:--:|:--:|:--:|
-|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|A1|1656652667347|
-|10ea7ad3-4be1-4271-9914-098635109edc|reserve|A2|1656652667352|
-|c76735e7-1d52-498b-8b07-e73d27143ca6|reserve|A3|1656652667356|
+|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|2|3|1656652667347|
+|10ea7ad3-4be1-4271-9914-098635109edc|reserve|2|4|1656652667352|
+|c76735e7-1d52-498b-8b07-e73d27143ca6|reserve|2|5|1656652667356|
 
 ## Cancel Reservation
 
@@ -162,11 +162,11 @@ ERROR: Encountered errors while bringing up the project.
 
 |history_id|operation|customer_id|seat_id|timestamp|
 |:--:|:--:|:--:|:--:|:--:|
-|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|A1|1656652667347|
-|10ea7ad3-4be1-4271-9914-098635109edc|reserve|A2|1656652667352|
-|c76735e7-1d52-498b-8b07-e73d27143ca6|reserve|A3|1656652667356|
-|e8385020-c8f2-474b-98dd-d00328fa718f|cancel|A1|1656652800722|
-|f29f386d-7c96-476c-97a5-ecde23f3b8fe|reserve|A3|1656652800726|
+|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|2|reserve|3|1656652667347|
+|10ea7ad3-4be1-4271-9914-098635109edc|2|reserve|4|1656652667352|
+|c76735e7-1d52-498b-8b07-e73d27143ca6|2|reserve|5|1656652667356|
+|e8385020-c8f2-474b-98dd-d00328fa718f|2|cancel|3|1656652800722|
+|f29f386d-7c96-476c-97a5-ecde23f3b8fe|2|cancel|5|1656652800726|
 
 ## History
 

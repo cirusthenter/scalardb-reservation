@@ -54,6 +54,47 @@ ERROR: Encountered errors while bringing up the project.
 ./gradlew run --args="LoadInitialData"
 ```
 
+- 以下のようなエラーが起きたケース
+    - `Caused by: java.sql.SQLException: Access denied for user 'root'@'localhost' (using password: YES)`
+    - ローカル環境で MySQL が立ち上がっているのが原因の可能性大
+    - `brew services stop mysql` する
+
+### MySQL
+
+#### customer.customers table
+
+|customer_id|name|
+|:--:|:--:|
+|1|Elon Musk|
+|2|Steve Jobs|
+|3|Tony Stark|
+
+#### seat.seats table
+
+|seat_id|name|reserved_by|
+|:--:|:--:|:--:|
+|1|"S1"|-1|
+|2|"S2"|-1|
+|3|"A1"|-1|
+|4|"A2"|-1|
+|5|"A3"|-1|
+|6|"B1"|-1|
+|7|"B2"|-1|
+|8|"B3"|-1|
+|9|"B4"|-1|
+|10|"C1"|-1|
+|11|"C2"|-1|
+|12|"C3"|-1|
+|13|"C4"|-1|
+|14|"C5"|-1|
+
+### Cassandra
+
+#### history.histories teble
+
+|history_id|operation|customer_id|seat_id|timestamp|
+|:--:|:--:|:--:|:--:|:--:|
+
 ## Reserve
 
 ユーザー2が席 3, 4, 5 を予約
@@ -61,6 +102,33 @@ ERROR: Encountered errors while bringing up the project.
 ```
 ./gradlew run --args="Reserve 2 3,4,5"
 ```
+
+#### MySQL seat.seats
+
+|seat_id|name|reserved_by|
+|:--:|:--:|:--:|
+|1|"S1"|-1|
+|2|"S2"|-1|
+|3|"A1"|2|
+|4|"A2"|2|
+|5|"A3"|2|
+|6|"B1"|-1|
+|7|"B2"|-1|
+|8|"B3"|-1|
+|9|"B4"|-1|
+|10|"C1"|-1|
+|11|"C2"|-1|
+|12|"C3"|-1|
+|13|"C4"|-1|
+|14|"C5"|-1|
+
+#### Cassandra history.histories
+
+|history_id|operation|customer_id|seat_id|timestamp|
+|:--:|:--:|:--:|:--:|:--:|
+|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|A1|1656652667347|
+|10ea7ad3-4be1-4271-9914-098635109edc|reserve|A2|1656652667352|
+|c76735e7-1d52-498b-8b07-e73d27143ca6|reserve|A3|1656652667356|
 
 ## Cancel Reservation
 
@@ -70,6 +138,36 @@ ERROR: Encountered errors while bringing up the project.
 ./gradlew run --args="Cancel 2 3,5"
 ```
 
+
+#### MySQL seat.seats
+
+|seat_id|name|reserved_by|
+|:--:|:--:|:--:|
+|1|"S1"|-1|
+|2|"S2"|-1|
+|3|"A1"|-1|
+|4|"A2"|2|
+|5|"A3"|-1|
+|6|"B1"|-1|
+|7|"B2"|-1|
+|8|"B3"|-1|
+|9|"B4"|-1|
+|10|"C1"|-1|
+|11|"C2"|-1|
+|12|"C3"|-1|
+|13|"C4"|-1|
+|14|"C5"|-1|
+
+#### Cassandra history.histories
+
+|history_id|operation|customer_id|seat_id|timestamp|
+|:--:|:--:|:--:|:--:|:--:|
+|e3b920be-2ee3-4246-9bc0-d5cb1ff71f0d|reserve|A1|1656652667347|
+|10ea7ad3-4be1-4271-9914-098635109edc|reserve|A2|1656652667352|
+|c76735e7-1d52-498b-8b07-e73d27143ca6|reserve|A3|1656652667356|
+|e8385020-c8f2-474b-98dd-d00328fa718f|cancel|A1|1656652800722|
+|f29f386d-7c96-476c-97a5-ecde23f3b8fe|reserve|A3|1656652800726|
+
 ## History
 
 ユーザー2の予約/予約削除の履歴を一覧表示
@@ -78,10 +176,26 @@ ERROR: Encountered errors while bringing up the project.
 ./gradlew run --args="GetHistories 2"
 ```
 
+以下のような表示が出る
+
+```
+operation: reserve, seat: A1, time: 2022-07-01 14:17:47.347
+operation: reserve, seat: A2, time: 2022-07-01 14:17:47.352
+operation: reserve, seat: A3, time: 2022-07-01 14:17:47.356
+operation: cancel, seat: A1, time: 2022-07-01 14:20:00.722
+operation: cancel, seat: A3, time: 2022-07-01 14:20:00.726
+```
+
 ## ユーザー情報表示
 
 ユーザー2の情報を表示
 
 ```
-./gradlew run --args="GetCustomerInfo"
+./gradlew run --args="GetCustomerInfo 2"
+```
+
+以下のような表示が出る
+
+```
+"id": 2, "name": "Steve Jobs"
 ```

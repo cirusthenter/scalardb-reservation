@@ -13,6 +13,7 @@ repositories {
 dependencies {
     implementation 'com.scalar-labs:scalardb:3.5.2'
     implementation 'info.picocli:picocli:4.1.4'
+    implementation group: 'com.scalar-labs', name: 'scalardb', version: '3.5.2'
 }
 
 application {

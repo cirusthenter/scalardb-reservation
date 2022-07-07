@@ -38,8 +38,8 @@ public class Reservation implements AutoCloseable {
     try {
       transaction = manager.start();
       loadCustomerIfNotExists(transaction, 1, "Elon Musk");
-      loadCustomerIfNotExists(transaction, 2, "Steve Jobs");
-      loadCustomerIfNotExists(transaction, 3, "Tony Stark");
+      loadCustomerIfNotExists(transaction, 2, "Tony Stark");
+      loadCustomerIfNotExists(transaction, 3, "Steve Jobs");
       loadSeatIfNotExists(transaction, 1, "S1", -1);
       loadSeatIfNotExists(transaction, 2, "S2", -1);
       loadSeatIfNotExists(transaction, 3, "A1", -1);

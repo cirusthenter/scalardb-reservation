@@ -66,8 +66,8 @@ ERROR: Encountered errors while bringing up the project.
 |customer_id|name|
 |:--:|:--:|
 |1|Elon Musk|
-|2|Steve Jobs|
-|3|Tony Stark|
+|2|Tony Stark|
+|3|Steve Jobs|
 
 #### seat.seats table
 
